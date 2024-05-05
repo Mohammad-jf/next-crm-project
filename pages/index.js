@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-      <h1>Crm project</h1>
+      <h1>wellcome to Crm project</h1>
     </>
   );
 }
