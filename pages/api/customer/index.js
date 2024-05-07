@@ -6,25 +6,31 @@ export default async function handler(req, res) {
     await connectDb();
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'DB connection failed' });
+    res.status(500).json({ status: 'failed', message: 'DB connection failed' });
     return;
   }
 
   switch (req.method) {
     case 'POST':
       const data = req.body.data;
-      if (data.name && data.lastName && data.email) {
-        try {
-          const customer = await Customer.create({ data });
-          res.status(201).json({ message: 'user created', data: customer });
-        } catch (error) {
-          console.log(error);
-          res.status(500).json({ message: 'failed to create customer' });
-        }
-      } else {
+      if (!data.name || !data.lastName || !data.email) {
         return res
           .status(400)
           .json({ status: 'failed', message: 'Bad customer credential' });
+      } else {
+        try {
+          const customer = await Customer.create({ data });
+          res.status(201).json({
+            status: 'success',
+            message: 'user created',
+            data: customer,
+          });
+        } catch (error) {
+          console.log(error);
+          res
+            .status(500)
+            .json({ status: 'failed', message: 'failed to create customer' });
+        }
       }
   }
 }
