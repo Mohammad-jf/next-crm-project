@@ -30,14 +30,11 @@ const AddCustomerPage = () => {
         products: []
       }
     );
-
     router.push('/');
   }
 
 
   const saveHandler = async () => {
-    console.log(formData);
-
     const res = await fetch('/api/customer', {
       method: "POST",
       body: JSON.stringify({ data: formData }),
@@ -49,10 +46,7 @@ const AddCustomerPage = () => {
 
     if (data.status === 'success') {
       router.push('/')
-
     }
-
-
   }
 
 
