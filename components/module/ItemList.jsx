@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FormInput from './FormInput';
 
 
@@ -25,7 +25,10 @@ const ItemList = ({ formData, setFormData }) => {
     }
 
 
+
     return (
+
+
         <div className='item-list'>
             <p>Purchased Products</p>
             {products.map((product, i) => (
@@ -44,6 +47,7 @@ const ItemList = ({ formData, setFormData }) => {
             ))}
             <button onClick={addHandler}>Add Item</button>
         </div>
+
     )
 }
 
