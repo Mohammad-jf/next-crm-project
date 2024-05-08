@@ -1,4 +1,5 @@
 import FormInput from "./FormInput"
+import ItemList from "./ItemList";
 
 const Form = ({ formData, setFormData }) => {
 
@@ -14,6 +15,7 @@ const Form = ({ formData, setFormData }) => {
             <FormInput name='address' value={formData.address} label='address' type='text' onChange={formDataHandler} />
             <FormInput name='postalCode' value={formData.postalCode} label='postalCode' type='text' onChange={formDataHandler} />
             <FormInput name='date' value={formData.date} label='date' type='date' onChange={formDataHandler} />
+            <ItemList formData={formData} setFormData={setFormData} />
         </div>
     )
 }
