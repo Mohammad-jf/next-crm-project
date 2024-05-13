@@ -27,23 +27,14 @@ const ItemList = ({ formData, setFormData }) => {
 
 
     return (
-
-
         <div className='item-list'>
             <p>Purchased Products</p>
             {products.map((product, i) => (
-                <div className="form-input__list" key={i}>
-                    <FormInput name='name' label='Name' type='text' value={product.name}
-                        onChange={(e) => changeHandler(e, i)} />
-
-                    <div>
-                        <FormInput name='price' label='Price' type='text' value={product.price}
-                            onChange={(e) => changeHandler(e, i)} />
-                        <FormInput name='qty' label='Qty' type='number' value={product.qty}
-                            onChange={(e) => changeHandler(e, i)} />
-                    </div>
-                    <button onClick={(e) => deleteHandler(i)}>Remove</button>
-                </div>
+                <ProductItem
+                    key={i}
+                    product={product}
+                    changeHandler={changeHandler}
+                    deleteHandler={deleteHandler} />
             ))}
             <button onClick={addHandler}>Add Item</button>
         </div>
@@ -52,3 +43,23 @@ const ItemList = ({ formData, setFormData }) => {
 }
 
 export default ItemList
+
+
+
+
+function ProductItem({ product, changeHandler, deleteHandler }) {
+    return (
+        <div className="form-input__list">
+            <FormInput name='name' label='Name' type='text' value={product.name}
+                onChange={(e) => changeHandler(e, i)} />
+
+            <div>
+                <FormInput name='price' label='Price' type='text' value={product.price}
+                    onChange={(e) => changeHandler(e, i)} />
+                <FormInput name='qty' label='Qty' type='number' value={product.qty}
+                    onChange={(e) => changeHandler(e, i)} />
+            </div>
+            <button onClick={(e) => deleteHandler(i)}>Remove</button>
+        </div>
+    )
+}
