@@ -33,8 +33,8 @@ const ItemList = ({ formData, setFormData }) => {
                 <ProductItem
                     key={i}
                     product={product}
-                    changeHandler={changeHandler}
-                    deleteHandler={deleteHandler} />
+                    changeHandler={(e) => changeHandler(e, i)}
+                    deleteHandler={(e) => deleteHandler(i)} />
             ))}
             <button onClick={addHandler}>Add Item</button>
         </div>
@@ -51,15 +51,15 @@ function ProductItem({ product, changeHandler, deleteHandler }) {
     return (
         <div className="form-input__list">
             <FormInput name='name' label='Name' type='text' value={product.name}
-                onChange={(e) => changeHandler(e, i)} />
+                onChange={changeHandler} />
 
             <div>
                 <FormInput name='price' label='Price' type='text' value={product.price}
-                    onChange={(e) => changeHandler(e, i)} />
+                    onChange={changeHandler} />
                 <FormInput name='qty' label='Qty' type='number' value={product.qty}
-                    onChange={(e) => changeHandler(e, i)} />
+                    onChange={changeHandler} />
             </div>
-            <button onClick={(e) => deleteHandler(i)}>Remove</button>
+            <button onClick={deleteHandler}>Remove</button>
         </div>
     )
 }
