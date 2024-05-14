@@ -48,7 +48,6 @@ export default async function handler(req, res) {
         res.status(200).json({
           status: 'success',
           message: 'customer update',
-          data: customer,
         });
       } catch (error) {
         console.log(error);
