@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Form from "../module/Form";
 import { useRouter } from "next/router";
+import moment from "moment";
 
 
 const EditCustomerPage = ({ id }) => {
@@ -21,9 +22,12 @@ const EditCustomerPage = ({ id }) => {
             const res = await fetch(`/api/customer/${id}`);
             const dataObj = await res.json();
             const { data } = dataObj
+            const newData = data.date ? {
+                ...data, date: moment(data.date).utc().format('YYYY-MM-DD')
+            } : { ...data }
 
             if (data) {
-                setFormData({ ...formData, ...data })
+                setFormData({ ...formData, ...newData });
             }
         }
         getCustomer();
